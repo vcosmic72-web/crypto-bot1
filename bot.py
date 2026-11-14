@@ -101,21 +101,19 @@ def send_to_make(symbol, data):
 
 def main():
     print("🚀 بدء تشغيل بوت مراقبة العملات على إطار 15 دقيقة...")
-    while True:
         for symbol in SYMBOLS:
-            print(جاري فحص {symbol}...)
-            df = get_binance_data(symbol)
-            if df is not None:
-                signal_data = check_indicators(df)
-                if signal_data:
-                    print(f"🎯 تم العثور على فرصة مطابقة لـ {symbol}!")
-                    send_to_make(symbol, signal_data)
-            
-            # توقف قصير بين العملات لتجنب حظر الـ API
-            time.sleep(2)
-            
-        print("⏳ انتهاء دورة الفحص الحالية. سيتم إعادة الفحص بعد 5 دقائق...")
-        time.sleep(300) # الانتظار 5 دقائق قبل الدورة القادمة
+        print(f"فحص {symbol}...")
+        df = get_binance_data(symbol)
+        if df is not None:
+            signal_data = check_indicators(df)
+            if signal_data:
+                print(f"🔥 تم العثور على فرصة مطابقة لـ {symbol}!")
+                send_to_make(symbol, signal_data)
+        time.sleep(2)
 
 if __name__ == "__main__":
     main()
+
+
+            
+        
